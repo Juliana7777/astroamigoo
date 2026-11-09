@@ -68,9 +68,8 @@ CREATE TABLE intento (
 
 SHOW TABLES;
 
-USE ASTROAMIGO;
 
--- --
+
 SELECT
     TABLE_NAME,
     COLUMN_NAME,
