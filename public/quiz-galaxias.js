@@ -1,11 +1,11 @@
-
+// me permite obtener los elementos del formulario, contenedor de preguntas y resultado del cuestionario y trabajar con ellos en el código JavaScript
 const formulario = document.getElementById("formulario-cuestionario");
 const contenedor = document.getElementById("contenedor-preguntas");
 const resultado = document.getElementById("resultado");
 
 let preguntas = [];
 
-// Cargar las preguntas desde la base de datos
+// Cargar las preguntas desde la base de datos de MySQL 
 async function cargarPreguntas() {
     try {
         const respuesta = await fetch("/api/cuestionarios/3/preguntas");
@@ -29,6 +29,7 @@ async function cargarPreguntas() {
                 const etiqueta = document.createElement("label");
                 etiqueta.className = "d-block mb-2";
 
+                // Crea un input de tipo radio (bolita de opción) para cada opción de respuesta y
                 const radio = document.createElement("input");
                 radio.type = "radio";
                 radio.name = `pregunta-${pregunta.id_pregunta}`;
@@ -54,7 +55,7 @@ async function cargarPreguntas() {
     }
 }
 
-// Calificar las respuestas seleccionadas
+// Calificar las respuestas seleccionadas 
 formulario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
@@ -68,7 +69,7 @@ formulario.addEventListener("submit", async function (evento) {
             id_opcion: seleccionada ? Number(seleccionada.value) : null
         };
     });
-
+ // si es el servidor presenta un eror al ejecutarse me mostrara un menaje de error al calificar el cuestionario
     try {
         const respuesta = await fetch("/api/cuestionarios/3/calificar", {
             method: "POST",

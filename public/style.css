@@ -359,3 +359,60 @@ footer a {
         font-size: 1.5rem;
     }
 }
+
+
+
+/* ==================================================
+   12. GALERÍA DEL UNIVERSO
+================================================== */
+
+.galeria-presentacion {
+    background-color: rgba(8, 17, 35, 0.45);
+}
+
+.galeria-descripcion {
+    max-width: 650px;
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.album-galeria {
+    background-color: rgba(8, 17, 35, 0.35);
+}
+
+.galeria-card {
+    background-color: rgba(13, 23, 41, 0.92);
+    border: 1px solid #334155;
+    color: #e1eaf7;
+    overflow: hidden;
+}
+
+.galeria-imagen {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.galeria-card .card-title {
+    color: #93c5fd;
+}
+
+.galeria-card .card-text {
+    color: #cbd5e1;
+}
+
+.galeria-card .card-footer {
+    background-color: transparent;
+    border-top: 1px solid #334155;
+}
+
+@media (max-width: 767px) {
+    .galeria-imagen {
+        height: 210px;
+    }
+
+    .galeria-descripcion {
+        font-size: 1rem;
+    }
+}

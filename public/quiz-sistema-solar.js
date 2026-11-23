@@ -1,4 +1,4 @@
-
+// me permite obtener los elementos del formulario, contenedor de preguntas y resultado del cuestionario y trabajar con ellos en el código JavaScript
 const contenedor = document.getElementById('contenedor-preguntas');
 const boton = document.getElementById('btn-calificar');
 const resultado = document.getElementById('resultado');
@@ -31,6 +31,8 @@ async function cargarPreguntas() {
 
                 const etiqueta = document.createElement('label');
                 etiqueta.className = 'd-block mb-2';
+                
+                // Crea un input de tipo radio (bolita de opción) para cada opción de respuesta 
 
                 const radio = document.createElement('input');
                 radio.type = 'radio';
@@ -54,6 +56,7 @@ async function cargarPreguntas() {
         console.error(error);
     }
 }
+// Evento click del botón de calificación, que envía las respuestas seleccionadas al servidor para su evaluación y muestra el resultado en la interfaz de usuario
 
 boton.addEventListener('click', async () => {
 
@@ -71,9 +74,10 @@ boton.addEventListener('click', async () => {
 
         respuestas.push({
             id_pregunta: pregunta.id_pregunta,
-            id_opcion: Number(seleccionada.value)
+            id_opcion: Number(seleccionada.value) 
         });
     }
+// cuando el usuario hace clic en el botón de calificación, se deshabilita el botón y se muestra un mensaje de "Calificando tus respuestas..." mientras se envían las respuestas al servidor para su evaluación
 
     try {
         boton.disabled = true;

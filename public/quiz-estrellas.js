@@ -47,6 +47,7 @@ async function cargarPreguntas() {
             contenedor.appendChild(bloque);
         });
 
+        // si es el servidor presenta un eror al ejecutarse me mostrara un menaje de error al carga las preguntas
     } catch (error) {
         contenedor.innerHTML = `
             <p class="text-danger">${error.message}</p>
@@ -54,9 +55,11 @@ async function cargarPreguntas() {
     }
 }
 
-// Calificar las respuestas seleccionadas
+// Calificar las respuestas que de el usuario al cuestionario
 formulario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
+
+    
 
     const respuestas = preguntas.map((pregunta) => {
         const seleccionada = document.querySelector(
@@ -68,7 +71,7 @@ formulario.addEventListener("submit", async function (evento) {
             id_opcion: seleccionada ? Number(seleccionada.value) : null
         };
     });
-
+        // si es el servidor presenta un eror al ejecutarse me mostrara un menaje de error al calificar el cuestionario 
     try {
         const respuesta = await fetch("/api/cuestionarios/2/calificar", {
             method: "POST",
@@ -78,15 +81,16 @@ formulario.addEventListener("submit", async function (evento) {
             body: JSON.stringify({ respuestas })
         });
 
+        // Si ocurre un error al calificar el cuestionario, se mostrará un mensaje de error en la interfaz de usuario
         if (!respuesta.ok) {
             throw new Error("No se pudo calificar el cuestionario.");
         }
-
+        // Si la calificación es exitosa, se mostrará el resultado en la interfaz de usuario
         const datos = await respuesta.json();
 
         resultado.textContent =
             `Obtuviste ${datos.correctas} de ${datos.total} respuestas correctas.`;
-
+        // Si ocurre un error al calificar el cuestionario, se mostrará un mensaje de error en la interfaz de usuario
     } catch (error) {
         resultado.innerHTML = `
             <p class="text-danger">${error.message}</p>
@@ -94,5 +98,5 @@ formulario.addEventListener("submit", async function (evento) {
     }
 });
 
-// Ejecutar la carga de preguntas
+// Ejecutar la carga de las preguntas de cuestionario
 cargarPreguntas();
