@@ -45,7 +45,7 @@ app.get('/galaxias.html', (req, res) => {
 const conexion = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'juliana123',
+    password: '*******',
     database: 'ASTROAMIGO'
 });
 
